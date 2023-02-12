@@ -1,15 +1,18 @@
 <template>
   <div>
-    <v-text-field
-      :rules="[rules.required]"
-      shaped
-      filled
-      dense
-      :loading="true"
-    />
+    <v-form fast-fail ref="form">
+      <v-text-field
+        :rules="[rules.required]"
+        shaped
+        filled
+        dense
+        :loading="isloading"
+        placeholder="Kullanıcı adınız"
+      />
+    </v-form>
     <div class="d-flex">
       <v-spacer />
-      <t-primary-button :width="'35%'" :text="'Kaydet'" />
+      <t-primary-button :width="'35%'" :text="'Kaydet'" @click="changeName" />
     </div>
   </div>
 </template>
@@ -24,11 +27,13 @@ export default {
       rules: {
         required: (value) => !!value || "Zorunlu.",
       },
+      isloading: false,
     };
   },
   methods: {
     changeName() {
-      console.log("sadasd");
+      if (!this.$refs.form.validate()) return;
+      console.log("akif");
     },
   },
 };

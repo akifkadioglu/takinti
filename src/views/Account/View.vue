@@ -1,13 +1,15 @@
 <template>
-    <div>a</div>
-  </template>
-  
-  <script>
-  export default {
-  
-  }
-  </script>
-  
-  <style>
-  
-  </style>
+  <div>
+    <t-user-name />
+  </div>
+</template>
+
+<script>
+import TUserName from "./Components/TUserName.vue";
+
+export default {
+  components: {
+    TUserName,
+  },
+};
+</script>
