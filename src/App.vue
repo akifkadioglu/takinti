@@ -1,27 +1,43 @@
 <template>
   <v-app>
-    <t-app-bar />
-    <v-main>
-      <v-container>
-        <v-responsive class="mx-auto" max-width="750">
-          <transition name="scroll-y-transition" mode="out-in">
-            <router-view />
-          </transition>
-        </v-responsive>
-      </v-container>
+    <t-app-bar class="header" />
+    <v-main class="mt-15">
+      <pages @page="page" :index="index" />
     </v-main>
-    <t-bottom-bar />
+    <!--     <t-bottom-bar :index="index" @page="page" />
+ -->
   </v-app>
 </template>
 
 <script>
 import TAppBar from "./views/Components/TAppBar.vue";
-import TBottomBar from "./views/Components/TBottomBar.vue";
+/* import TBottomBar from "./views/Components/TBottomBar.vue";
+ */ import Pages from "./views/Pages.vue";
+
 export default {
+  name: "App",
+
   components: {
     TAppBar,
-    TBottomBar,
+    /*     TBottomBar,
+     */ Pages,
   },
-  name: "App",
+  data() {
+    return {
+      index: 0,
+    };
+  },
+  methods: {
+    page(index) {
+      this.index = index;
+    },
+  },
 };
 </script>
+<style scoped>
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+</style>

@@ -20,3 +20,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.view{
+  height: 85vh;
+}
+
+.page-center{
+  height: 90vh;
+  justify-content: center;
+  display: grid;
+  align-items: center;
+}

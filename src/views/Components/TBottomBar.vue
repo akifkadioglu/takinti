@@ -1,38 +1,55 @@
 <template>
-  <v-bottom-navigation color="primary" grow>
+  <v-bottom-navigation grow class="footer">
     <v-btn
       exact
-      :to="{ name: item.page, replace: true }"
+      @click="route(index)"
       plain
       v-for="(item, index) in pages"
       :key="index"
     >
-      <v-icon>{{ item.icon }}</v-icon>
+      <v-icon :color="item.page == $route.name ? 'primary' : ''">
+        {{ item.icon }}
+      </v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
 
 <script>
 export default {
+  props: {
+    index: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       pages: [
         {
-          page: this.$routeNames.HOME,
           icon: "home",
         },
         {
-          page: this.$routeNames.PUBLIC,
           icon: "public",
         },
         {
-          page: this.$routeNames.ACCOUNT,
           icon: "person",
         },
       ],
     };
   },
+  methods: {
+    route(routeIndex) {
+      console.log(routeIndex);
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+}
+</style>
